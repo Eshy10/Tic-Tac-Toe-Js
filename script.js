@@ -13,9 +13,11 @@ const render = () => {
         document.getElementsByClassName('cell')[i].innerHTML = gameBoard.board[i]
     }
 }
-
-let currentPlayer = 'x';
+let currentSymbol;
+let currentPlayer;
 let round = 0;
+let player1;
+let player2;
 let winningConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -45,16 +47,18 @@ const check = () => {
 
 const play = (num) => {
     if (typeof gameBoard.board[num] == "number"){
-        gameBoard.board[num] = currentPlayer;
+        gameBoard.board[num] = currentSymbol;
         render();
         if (check() || round >= 9) {
             result();
         } else {
             round += 1;
-            if (currentPlayer === 'x') {
-                currentPlayer = 'o'
+            if (currentPlayer === player1.name) {
+                currentPlayer = player2.name 
+                currentSymbol = player2.symbol
             } else {
-                currentPlayer = 'x'
+                currentPlayer = player1.name
+                currentSymbol = player1.symbol
             }
     
         }
@@ -64,18 +68,50 @@ const play = (num) => {
     
 }
 
+
+const loser = () => {
+    if (currentPlayer === player1.name) {
+        return player2.name
+    } else {
+        return player1.name
+    }
+}
+
 const result = () => {
-    if (round < 9){
-        document.getElementById('game-status').innerHTML = `Congratulations ${currentPlayer}! you've won! sucks for ${currentPlayer} 😂`
+    if (check()){
+        document.getElementById('game-status').innerHTML = `Congratulations ${currentPlayer}! you've won! sucks for ${loser()} 😂`
     } else {
         document.getElementById('game-status').innerHTML = `It's a Draw! well I guess you're both bad at this`
     }
 }
 
+
 const reset = () => {
     gameBoard.reset();
-    currentPlayer = 'x';
+    currentPlayer = player1.name;
+    currentSymbol = player1.symbol
     round = 0;
     document.getElementById('game-status').innerHTML = ''
     render()
 }
+
+const newPlayer = (name, symbol) => {
+ return { name, symbol}
+}
+
+
+const form = document.querySelector('#game-form')
+const player1Input = document.querySelector('#player1')
+const player2Input = document.querySelector('#player2')
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+  if (player1Input.value !== ""  && player2Input.value !== "") {
+      render()
+      form.style.display = "none"
+      player1 = newPlayer(player1Input.value, 'x')
+      player2 = newPlayer(player2Input.value, 'o')
+      currentSymbol = player1.symbol
+      currentPlayer = player1.name
+  }
+  
+})

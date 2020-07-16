@@ -18,12 +18,19 @@
     top: 0;
 }
 
+#game-form {
+    z-index: 99;
+    background-color: white;
+}
+
 #game-board {
     display: grid;
     grid-template-columns: repeat(3, auto);
     grid-gap: 5px;
     width: 100%;
     background-color: cornflowerblue;
+    z-index: 1;
+
 }
 
 .cell {
