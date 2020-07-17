@@ -15,6 +15,7 @@ const render = () => {
 }
 let currentSymbol;
 let currentPlayer;
+let round = 1;
 let player1;
 let player2;
 let gameActive = true;
@@ -51,11 +52,10 @@ const play = (num) => {
     if (typeof gameBoard.board[num] == "number"){
         gameBoard.board[num] = currentSymbol;
         render();
-        if (check()) {
+    }
+        if (check() || draw()) {
             result();
-        }else if (draw()) {
-           result();
-        } else {
+        }else {
             if (currentPlayer === player1.name) {
                 currentPlayer = player2.name 
                 currentSymbol = player2.symbol
@@ -63,20 +63,21 @@ const play = (num) => {
                 currentPlayer = player1.name
                 currentSymbol = player1.symbol
             }
-    
+            round += 1;
         }
     } else {
-        document.getElementById('game-status').innerHTML = `we both know you can't do that, so why are you even trying? click an empty column`
+        document.getElementById('game-status').innerHTML = `we both know you can't do that, so why are you even trying?`
     }
-}
+
     
 }
 
 const draw = () => {
-    gameBoard.board.every((element) => {
-     return (element === "x" || element === "o"); 
-    });
-    gameActive = false;
+    if (round >= 9 && !check()){
+        gameActive = false;
+        return true
+    }
+    return false
 }
 
 const loser = () => {
