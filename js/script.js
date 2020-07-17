@@ -100,6 +100,7 @@ const reset = () => {
   currentPlayer = player1.name;
   currentSymbol = player1.symbol;
   round = 1;
+  gameActive = true;
   document.getElementById('game-status').innerHTML = '';
   render();
 };
@@ -115,7 +116,7 @@ form.addEventListener('submit', (e) => {
   if (player1Input.value !== '' && player2Input.value !== '') {
     render();
     form.style.display = 'none';
-    document.querySelector('.reset').style.display = "block"
+    document.querySelector('.reset').style.display = 'block';
     player1 = newPlayer(player1Input.value, 'x');
     player2 = newPlayer(player2Input.value, 'o');
     currentSymbol = player1.symbol;
