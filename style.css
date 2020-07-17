@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
   justify-content: center !important;
+  background-color: rgb(43, 56, 175);
 }
 
 .container {
@@ -30,6 +31,10 @@
   width: 100%;
   background-color: cornflowerblue;
   z-index: 1;
+}
+
+.reset {
+  display: none;
 }
 
 .cell {

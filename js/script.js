@@ -63,7 +63,7 @@ const result = () => {
   if (check()) {
     document.getElementById('game-status').innerHTML = `Congratulations ${currentPlayer}! you've won! sucks for ${loser()} 😂`;
   } else {
-    document.getElementById('game-status').innerHTML = 'It\'s a Draw! well I guess you\'re both bad at this';
+    document.getElementById('game-status').innerHTML = 'It\'s a Draw! well I guess you\'re both bad at this🙄';
   }
 };
 
@@ -89,7 +89,7 @@ const play = (num) => {
       round += 1;
     }
   } else {
-    document.getElementById('game-status').innerHTML = 'we both know you can\'t do that, so why are you even trying?';
+    document.getElementById('game-status').innerHTML = 'we both know you can\'t do that, so why are you even trying?🙄 ';
   }
 };
 
@@ -115,6 +115,7 @@ form.addEventListener('submit', (e) => {
   if (player1Input.value !== '' && player2Input.value !== '') {
     render();
     form.style.display = 'none';
+    document.querySelector('.reset').style.display = "block"
     player1 = newPlayer(player1Input.value, 'x');
     player2 = newPlayer(player2Input.value, 'o');
     currentSymbol = player1.symbol;
