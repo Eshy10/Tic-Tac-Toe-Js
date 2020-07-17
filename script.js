@@ -15,9 +15,9 @@ const render = () => {
 }
 let currentSymbol;
 let currentPlayer;
-let round = 0;
 let player1;
 let player2;
+let gameActive = true;
 let winningConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -38,6 +38,7 @@ const check = () => {
         let c = gameBoard.board[condition[2]];
         if (a == b && b == c) {
             output = true;
+            gameActive = false
             break
         }
     }
@@ -46,13 +47,15 @@ const check = () => {
 
 
 const play = (num) => {
+    if (!check()) {
     if (typeof gameBoard.board[num] == "number"){
         gameBoard.board[num] = currentSymbol;
         render();
-        if (check() || round >= 9) {
+        if (check()) {
             result();
+        }else if (draw()) {
+           result();
         } else {
-            round += 1;
             if (currentPlayer === player1.name) {
                 currentPlayer = player2.name 
                 currentSymbol = player2.symbol
@@ -65,9 +68,16 @@ const play = (num) => {
     } else {
         document.getElementById('game-status').innerHTML = `we both know you can't do that, so why are you even trying? click an empty column`
     }
+}
     
 }
 
+const draw = () => {
+    gameBoard.board.every((element) => {
+     return (element === "x" || element === "o"); 
+    });
+    gameActive = false;
+}
 
 const loser = () => {
     if (currentPlayer === player1.name) {
@@ -90,7 +100,6 @@ const reset = () => {
     gameBoard.reset();
     currentPlayer = player1.name;
     currentSymbol = player1.symbol
-    round = 0;
     document.getElementById('game-status').innerHTML = ''
     render()
 }
