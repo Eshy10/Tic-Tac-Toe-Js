@@ -9,7 +9,7 @@
   <title>Tic-Tac-Toe</title>
 </head>
 
-<body onload="render()">
+<body>
   <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand nav-brand font-weight-bold" href="#">Tic-Tac-Toe</a>
   </nav>
@@ -29,20 +29,20 @@
       <input type="submit" class=" btn btn-outline-primary">
     </form>
     <div id="game-board">
-      <div onclick="play(0)" class="cell"></div>
-      <div onclick="play(1)" class="cell"></div>
-      <div onclick="play(2)" class="cell"></div>
-      <div onclick="play(3)" class="cell"></div>
-      <div onclick="play(4)" class="cell"></div>
-      <div onclick="play(5)" class="cell"></div>
-      <div onclick="play(6)" class="cell"></div>
-      <div onclick="play(7)" class="cell"></div>
-      <div onclick="play(8)" class="cell"></div>
+      <div onclick="gamePlay.play(0)" class="cell"></div>
+      <div onclick="gamePlay.play(1)" class="cell"></div>
+      <div onclick="gamePlay.play(2)" class="cell"></div>
+      <div onclick="gamePlay.play(3)" class="cell"></div>
+      <div onclick="gamePlay.play(4)" class="cell"></div>
+      <div onclick="gamePlay.play(5)" class="cell"></div>
+      <div onclick="gamePlay.play(6)" class="cell"></div>
+      <div onclick="gamePlay.play(7)" class="cell"></div>
+      <div onclick="gamePlay.play(8)" class="cell"></div>
     </div>
   </div>
   <div id="game-status"></div>
   <div class="reset">
-    <button onclick="reset()" type="submit" class="btn btn-outline-danger">Reset</button>
+    <button onclick="gamePlay.reset()" type="submit" class="btn btn-outline-danger">Reset</button>
   </div>
   <script src="./js/script.js"></script>
   <script src="./js/index.js"></script>
