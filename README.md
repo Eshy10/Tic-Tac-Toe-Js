@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://rawcdn.githack.com/Eshy10/Tic-Tac-Toe-Js/0d160c06c660bbbca126e4adbdb5b231a07ef0f6/index.html)
+[Live Demo Link](https://raw.githack.com/Eshy10/Tic-Tac-Toe-Js/feature/index.html)
 
 
 ## Usage
