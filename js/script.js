@@ -73,6 +73,9 @@ const gamePlay = (() => {
   };
 
   const play = (num) => {
+    if (typeof gameBoard.board[num] !== 'number' || !gameActive) {
+      return;
+    }
     if (gameActive) {
       if (typeof gameBoard.board[num] === 'number') {
         gameBoard.board[num] = currentSymbol;
