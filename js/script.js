@@ -111,6 +111,7 @@ const gamePlay = (() => {
   const form = document.querySelector('#game-form');
   const player1Input = document.querySelector('#player1');
   const player2Input = document.querySelector('#player2');
+  document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (player1Input.value !== '' && player2Input.value !== '') {
@@ -123,7 +124,10 @@ const gamePlay = (() => {
       currentPlayer = player1.name;
     }
   });
+});
   return { render, play, reset };
 })();
 
 gamePlay.render();
+
+module.exports = { gameBoard, gamePlay, newPlayer }
