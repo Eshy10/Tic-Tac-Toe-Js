@@ -43,14 +43,14 @@ const gamePlay = (() => {
       const c = gameBoard.board[condition[2]];
       if (a === b && b === c) {
         output = true;
-        gameActive = false;
+        gamePlay.gameActive = false;
         break;
       }
     }
     return output;
   };
   const draw = () => {
-    if (round >= 9 && !check()) {
+    if (gamePlay.round >= 9 && !check()) {
       gameActive = false;
       return true;
     }
@@ -112,22 +112,34 @@ const gamePlay = (() => {
   const player1Input = document.querySelector('#player1');
   const player2Input = document.querySelector('#player2');
   document.addEventListener('DOMContentLoaded', () => {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (player1Input.value !== '' && player2Input.value !== '') {
-      render();
-      form.style.display = 'none';
-      document.querySelector('.reset').style.display = 'block';
-      player1 = newPlayer(player1Input.value, 'x');
-      player2 = newPlayer(player2Input.value, 'o');
-      currentSymbol = player1.symbol;
-      currentPlayer = player1.name;
-    }
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (player1Input.value !== '' && player2Input.value !== '') {
+        render();
+        form.style.display = 'none';
+        document.querySelector('.reset').style.display = 'block';
+        player1 = newPlayer(player1Input.value, 'x');
+        player2 = newPlayer(player2Input.value, 'o');
+        currentSymbol = player1.symbol;
+        currentPlayer = player1.name;
+      }
+    });
   });
-});
-  return { render, play, reset };
+  return {
+    render,
+    play,
+    reset,
+    round,
+    player1,
+    player2,
+    draw,
+    gameActive,
+    currentPlayer,
+    winningConditions,
+    check,
+  };
 })();
 
 gamePlay.render();
 
-module.exports = { gameBoard, gamePlay, newPlayer }
+module.exports = { gameBoard, gamePlay, newPlayer };
